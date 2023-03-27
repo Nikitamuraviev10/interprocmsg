@@ -56,7 +56,7 @@ fn sig_init(sig: i32) -> usize {
         let mut new_action: libc::sigaction = mem::zeroed();
         let mut old_action: libc::sigaction = mem::zeroed();
         
-        new_action.sa_flags = libc::SA_SIGINFO;
+        new_action.sa_flags = libc::SA_SIGINFO | libc::SA_RESTART;
         new_action.sa_sigaction = sig_handler as usize;
         libc::sigemptyset(&mut new_action.sa_mask as *mut libc::sigset_t);
 
